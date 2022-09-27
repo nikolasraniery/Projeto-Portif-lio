@@ -1,2 +1,2 @@
 email = 'nikolassmaciel@gmail.com'
-senha = '@nIKOLAS30828085'
+senha = 'uxpvvkjescptcmyo'

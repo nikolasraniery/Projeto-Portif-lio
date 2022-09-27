@@ -280,3 +280,7 @@ i.menu-mobile {
     background: #fff;
     border-radius: 50%;
 }
+
+#btn-enviar-loader {
+    display: none;
+}

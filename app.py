@@ -21,15 +21,15 @@ mail = Mail(app)
 
 class Contato: 
     def __init__(self, nome, email, mensagem):
-        self.nome = nome,
-        self.email = email,
+        self.nome = nome
+        self.email = email
         self.mensagem = mensagem
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('send', methods=['GET', 'POST'])
+@app.route('/send', methods=['GET', 'POST'])
 def send():
     if request.method == 'POST':
         formContato = Contato (
@@ -40,8 +40,8 @@ def send():
 
         msg = Message (
             subject = f'{formContato.nome} te enviou uma mensagem no portifólio',
-            sender = app.config.ger("MAIL_USERNAME"),
-            recipients = ['nikolassraniery@gmail.com', app.config.ger("MAIL_USERNAME")],
+            sender = app.config.get("MAIL_USERNAME"),
+            recipients = ['nikolassraniery@gmail.com', app.config.get("MAIL_USERNAME")],
             body = f'''
             
             {formContato.nome} com o e-mail {formContato.email}, te enviou a seguinte mensagem:
@@ -51,7 +51,7 @@ def send():
             '''
         )
         mail.send(msg)
-        flash('Mensagem enviada com sucesso')
+        flash('Mensagem enviada com sucesso!')
     return redirect('/')
 
 if __name__ == '__main__':
