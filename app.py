@@ -1,6 +1,6 @@
 import email
 from flask import Flask, flash, redirect, render_template, \
-     request 
+    request
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
 import os
@@ -22,30 +22,34 @@ app.config.update(mail_settings)
 
 mail = Mail(app)
 
-class Contato: 
+
+class Contato:
     def __init__(self, nome, email, mensagem):
         self.nome = nome
         self.email = email
         self.mensagem = mensagem
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
 
+
 @app.route('/send', methods=['GET', 'POST'])
 def send():
     if request.method == 'POST':
-        formContato = Contato (
+        formContato = Contato(
             request.form["nome"],
             request.form["email"],
             request.form["mensagem"]
         )
 
-        msg = Message (
-            subject = f'{formContato.nome} te enviou uma mensagem no portifólio',
-            sender = app.config.get("MAIL_USERNAME"),
-            recipients = ['nikolassraniery@gmail.com', app.config.get("MAIL_USERNAME")],
-            body = f'''
+        msg = Message(
+            subject=f'{formContato.nome} te enviou uma mensagem no portifólio',
+            sender=app.config.get("MAIL_USERNAME"),
+            recipients=['nikolassraniery@gmail.com',
+                        app.config.get("MAIL_USERNAME")],
+            body=f'''
             
             {formContato.nome} com o e-mail {formContato.email}, te enviou a seguinte mensagem:
 
@@ -56,6 +60,7 @@ def send():
         mail.send(msg)
         flash('Mensagem enviada com sucesso!')
     return redirect('/')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
