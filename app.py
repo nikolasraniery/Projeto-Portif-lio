@@ -1,5 +1,6 @@
 import email
-from flask import Flask, render_template, redirect, request, flash 
+from flask import Flask, flash, redirect, render_template, \
+     request 
 from flask_mail import Mail, Message
 from config import email,senha
 
