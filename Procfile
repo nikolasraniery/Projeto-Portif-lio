@@ -1,1 +1,0 @@
-web: gunicor app:app
