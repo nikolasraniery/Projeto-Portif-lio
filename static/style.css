@@ -25,8 +25,10 @@ body {
     margin: 15px auto;
     display: block;
     width: 120px;
+    height: 120px;
     border: 8px solid #41207e;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 #header .profile h1 {
